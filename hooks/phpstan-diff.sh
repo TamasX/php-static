@@ -1,10 +1,5 @@
 #!/bin/bash
 
-# Path to your php-static-analysis repo
-STATIC_ANALYSIS_DIR="/path/to/php-static-analysis"
-
-cd "$STATIC_ANALYSIS_DIR"
-
 # Check if Lando is running
 if ! lando info &>/dev/null; then
   echo "Lando is not running. Starting Lando..."
