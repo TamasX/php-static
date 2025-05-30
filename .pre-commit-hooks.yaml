@@ -1,5 +1,5 @@
 - id: phpstan-diff
   name: Run PHPStan on changed PHP files
   entry: hooks/phpstan-diff.sh
-  language: system
+  language: script
   types: [php]
