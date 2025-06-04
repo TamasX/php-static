@@ -1,5 +1,17 @@
 - id: phpstan-diff
   name: Run PHPStan on changed PHP files
-  entry: hooks/phpstan-diff.sh
+  entry: /path/to/php-static-analysis/hooks/phpstan-diff.sh
+  language: script
+  types: [php]
+
+- id: psalm-diff
+  name: Run Psalm on changed PHP files
+  entry: /path/to/php-static-analysis/hooks/psalm-diff.sh
+  language: script
+  types: [php]
+
+- id: codesniffer-diff
+  name: Run CodeSniffer on changed PHP files
+  entry: /path/to/php-static-analysis/hooks/cs-diff.sh
   language: script
   types: [php]
