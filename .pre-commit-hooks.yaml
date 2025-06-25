@@ -2,12 +2,14 @@
   name: Run PHPStan on changed PHP files
   entry: hooks/phpstan-diff.sh
   language: script
+  files: \.(php|module|inc|install|theme|profile)$
   types: [php]
 
 - id: psalm-diff
   name: Run Psalm on changed PHP files
   entry: hooks/psalm-diff.sh
   language: script
+  files: \.(php|module|inc|install|theme|profile)$
   types: [php]
 
 - id: codesniffer-diff

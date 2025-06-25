@@ -19,11 +19,5 @@ if [[ ! "$PHPCS_GLOBAL_CHECK" == *"PHP_CodeSniffer"* ]]; then
 
 fi
 
-FILES=$(git diff --cached --name-only --diff-filter=ACMRT | grep -E '\.(php|module|inc|install|theme|profile)$')
-
-if [ -n "$FILES" ]; then
-  echo "Running Code Sniffer on changed files:"
-  lando php $COMPOSER_GLOBAL_PATH/phpcs --standard=Drupal $FILES
-else
-  echo "No changed PHP files to analyze."
-fi
+echo "Running Code Sniffer on changed files:"
+lando php $COMPOSER_GLOBAL_PATH/phpcs --standard=Drupal $@
