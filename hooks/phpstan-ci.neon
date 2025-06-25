@@ -1,0 +1,30 @@
+parameters:
+    level: 1
+    paths:
+      - docroot/modules/custom
+      - docroot/themes/custom
+    bootstrapFiles:
+      # Load aliases.
+      - docroot/core/lib/Drupal/Core/Serialization/Yaml.php
+    excludePaths:
+      # Skip sites directory.
+      - sites
+      # All DBs
+      - *.sql
+      # Patchs
+      - *.patch
+      # Scrips
+      - *.sh
+      # Brands
+      # Later after approve
+      - docroot/brands
+      # Tests
+      - tests
+    ignoreErrors:
+      # new static() is a best practice in Drupal, so we cannot fix that.
+      - "#^Unsafe usage of new static#"
+
+      # Ignore common errors for now.
+      - "#Drupal calls should be avoided in classes, use dependency injection instead#"
+      - "#^Plugin definitions cannot be altered.#"
+      - "#^Class .* extends @internal class#"

@@ -6,6 +6,17 @@ if ! lando info &>/dev/null; then
   lando start
 fi
 
+PATH="vendor/bin/"
+
+#check if cs installed
+$PHPSTAN_CHECK=$(lando ssh -c "./vendor/bin/phpstan --version")
+
+if [[ ! "$PHPSTAN_CHECK" == *PHPStan* ]]; then
+  echo "Installing PHPSTAN (without modifying composer.json)..."
+  lando composer global require phpstan/phpstan
+  PATH=$(lando composer global config bin-dir --absolute)
+fi
+
 echo "Running PHPStan on changed PHP files..."
 
 # Find changed PHP files in the commit
@@ -13,7 +24,7 @@ FILES=$(git diff --cached --name-only --diff-filter=ACMRT | grep '\.php$' | past
 
 if [ -n "$FILES" ]; then
   echo "Files to analyse: $FILES"
-  lando phpstan analyse $FILES
+  lando php $PATH/phpstan analyse $FILES
 else
   echo "No changed PHP files found to analyse."
 fi
